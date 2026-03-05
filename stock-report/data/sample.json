@@ -1,11 +1,21 @@
 {
   "date": "2026-03-05",
+  "generatedAt": "2026-03-05T06:30:00+09:00",
+  "summary": "米国市場はFRBの利下げ期待を背景にS&P500が小幅上昇。テクノロジーセクターが牽引し、NASDAQは1%近い上昇を記録。一方、日経平均は円安を追い風に3日続伸し、38,000円台を回復した。原油価格は中東情勢の不透明感から上昇し、金価格も安全資産としての需要から堅調に推移している。",
   "markets": [
     {
       "name": "日経平均",
       "close": 38245.78,
       "change": 312.45,
-      "changePercent": 0.82
+      "changePercent": 0.82,
+      "volume": 1234567890
+    },
+    {
+      "name": "TOPIX",
+      "close": 2678.34,
+      "change": 18.92,
+      "changePercent": 0.71,
+      "volume": 890234567
     },
     {
       "name": "S&P 500",
@@ -14,10 +24,196 @@
       "changePercent": -0.45
     },
     {
+      "name": "NYダウ",
+      "close": 38654.12,
+      "change": -124.56,
+      "changePercent": -0.32
+    },
+    {
+      "name": "NASDAQ",
+      "close": 16234.89,
+      "change": 145.67,
+      "changePercent": 0.91
+    },
+    {
+      "name": "FTSE 100",
+      "close": 7645.23,
+      "change": -12.34,
+      "changePercent": -0.16
+    },
+    {
       "name": "上海総合",
-      "close": 3156.2,
-      "change": 0,
-      "changePercent": 0
+      "close": 3156.20,
+      "change": 23.45,
+      "changePercent": 0.75,
+      "volume": 3456789012
     }
-  ]
+  ],
+  "forex": [
+    {
+      "pair": "USD/JPY",
+      "rate": 149.85,
+      "change": -0.32,
+      "changePercent": -0.21
+    },
+    {
+      "pair": "EUR/JPY",
+      "rate": 162.45,
+      "change": 0.45,
+      "changePercent": 0.28
+    },
+    {
+      "pair": "EUR/USD",
+      "rate": 1.0845,
+      "change": 0.0023,
+      "changePercent": 0.21
+    },
+    {
+      "pair": "GBP/JPY",
+      "rate": 189.23,
+      "change": -0.56,
+      "changePercent": -0.30
+    }
+  ],
+  "commodities": [
+    {
+      "name": "金 (Gold)",
+      "price": 2145.30,
+      "unit": "USD/oz",
+      "change": 12.50,
+      "changePercent": 0.59
+    },
+    {
+      "name": "WTI原油",
+      "price": 78.45,
+      "unit": "USD/bbl",
+      "change": 1.23,
+      "changePercent": 1.59
+    },
+    {
+      "name": "銀 (Silver)",
+      "price": 24.56,
+      "unit": "USD/oz",
+      "change": -0.18,
+      "changePercent": -0.73
+    }
+  ],
+  "sectors": [
+    { "name": "テクノロジー", "changePercent": 1.25 },
+    { "name": "ヘルスケア", "changePercent": -0.38 },
+    { "name": "金融", "changePercent": 0.65 },
+    { "name": "エネルギー", "changePercent": 1.82 },
+    { "name": "消費財", "changePercent": -0.12 },
+    { "name": "通信", "changePercent": 0.45 },
+    { "name": "素材", "changePercent": -0.67 },
+    { "name": "不動産", "changePercent": -1.15 },
+    { "name": "公益", "changePercent": 0.23 },
+    { "name": "資本財", "changePercent": 0.34 }
+  ],
+  "news": [
+    {
+      "title": "FRB議長、年内利下げの可能性を示唆",
+      "source": "Reuters",
+      "url": "https://example.com/news/1",
+      "category": "金融政策",
+      "summary": "パウエル議長は議会証言で、インフレの鈍化傾向が続けば年内に利下げに踏み切る可能性があると述べた。市場では6月の利下げ確率が70%に上昇。"
+    },
+    {
+      "title": "Apple、四半期決算で過去最高益を更新",
+      "source": "Bloomberg",
+      "url": "https://example.com/news/2",
+      "category": "企業決算",
+      "summary": "iPhone 16シリーズの好調な販売に加え、サービス部門の成長が寄与。AI機能の搭載が買い替え需要を喚起している。"
+    },
+    {
+      "title": "中国政府、追加景気刺激策を発表",
+      "source": "SCMP",
+      "url": "https://example.com/news/3",
+      "category": "経済政策",
+      "summary": "不動産セクターの回復を目指し、住宅ローン金利の追加引き下げと地方政府の債務救済策を打ち出した。上海総合指数は0.75%上昇。"
+    },
+    {
+      "title": "トヨタ、全固体電池搭載EVを2027年投入と発表",
+      "source": "日経新聞",
+      "url": "https://example.com/news/4",
+      "category": "企業戦略",
+      "summary": "航続距離1,000kmを実現する全固体電池技術の量産化に目処。テスラとの競争が本格化する見通し。"
+    },
+    {
+      "title": "OPEC+、追加減産の延長を合意",
+      "source": "Reuters",
+      "url": "https://example.com/news/5",
+      "category": "コモディティ",
+      "summary": "サウジアラビア主導で日量200万バレルの追加減産を6月末まで延長。原油価格は80ドル台を目指す展開に。"
+    },
+    {
+      "title": "半導体業界、AI需要で受注が過去最高に",
+      "source": "日経新聞",
+      "url": "https://example.com/news/6",
+      "category": "テクノロジー",
+      "summary": "TSMCの2月売上は前年同月比35%増。NVIDIA向けの先端プロセス需要が牽引。日本の半導体装置メーカーにも恩恵。"
+    },
+    {
+      "title": "日銀、次回会合での利上げ観測が後退",
+      "source": "Reuters",
+      "url": "https://example.com/news/7",
+      "category": "金融政策",
+      "summary": "春闘の賃上げ動向を見極める姿勢。市場では4月会合での追加利上げ確率が30%に低下。円安がやや進行。"
+    },
+    {
+      "title": "ビットコイン、10万ドル突破後に調整局面",
+      "source": "CoinDesk",
+      "url": "https://example.com/news/8",
+      "category": "暗号資産",
+      "summary": "ETF資金流入は続くものの、利益確定売りが優勢。テクニカル的には95,000ドルがサポートラインとして意識される。"
+    }
+  ],
+  "calendar": [
+    {
+      "time": "08:50",
+      "country": "JP",
+      "event": "GDP速報値（10-12月期・2次速報）",
+      "importance": "high"
+    },
+    {
+      "time": "10:30",
+      "country": "CN",
+      "event": "Caixin サービス業PMI（2月）",
+      "importance": "medium"
+    },
+    {
+      "time": "18:00",
+      "country": "EU",
+      "event": "小売売上高（1月）",
+      "importance": "medium"
+    },
+    {
+      "time": "19:00",
+      "country": "EU",
+      "event": "消費者物価指数（2月・速報値）",
+      "importance": "high"
+    },
+    {
+      "time": "21:15",
+      "country": "US",
+      "event": "ADP雇用統計（2月）",
+      "importance": "high"
+    },
+    {
+      "time": "22:45",
+      "country": "US",
+      "event": "ISMサービス業景気指数（2月）",
+      "importance": "high"
+    },
+    {
+      "time": "24:00",
+      "country": "US",
+      "event": "EIA原油在庫統計",
+      "importance": "medium"
+    }
+  ],
+  "fearGreedIndex": {
+    "value": 62,
+    "label": "Greed"
+  }
 }

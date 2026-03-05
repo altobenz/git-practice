@@ -28,10 +28,37 @@ function main(inputPath, outputPath) {
   console.log(`レポートを生成しました: ${outputPath}`);
 }
 
+async function mainWithFetch(outputPath) {
+  const { fetchData } = require('./fetchData');
+  console.log('公開データソースからデータを取得中...');
+  const data = await fetchData();
+
+  const html = generateHtml(data);
+
+  const outDir = path.dirname(outputPath);
+  if (!fs.existsSync(outDir)) {
+    fs.mkdirSync(outDir, { recursive: true });
+  }
+
+  fs.writeFileSync(outputPath, html, 'utf-8');
+  console.log(`レポートを生成しました: ${outputPath}`);
+}
+
 if (require.main === module) {
-  const input = process.argv[2] || path.join(__dirname, '..', 'data', 'sample.json');
-  const output = process.argv[3] || path.join(__dirname, '..', 'output', 'report.html');
-  main(input, output);
+  const args = process.argv.slice(2);
+  const isFetch = args.includes('--fetch');
+
+  if (isFetch) {
+    const output = args.find(a => a !== '--fetch') || path.join(__dirname, '..', 'output', 'report.html');
+    mainWithFetch(output).catch(e => {
+      console.error(`エラー: ${e.message}`);
+      process.exit(1);
+    });
+  } else {
+    const input = args[0] || path.join(__dirname, '..', 'data', 'sample.json');
+    const output = args[1] || path.join(__dirname, '..', 'output', 'report.html');
+    main(input, output);
+  }
 }
 
 module.exports = { main };

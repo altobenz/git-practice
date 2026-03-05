@@ -3,45 +3,540 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>株式市場レポート | 2026年3月5日</title>
+  <title>株式市場デイリーレポート | 2026年3月5日</title>
   <style>
-    :root { --bg:#f5f7fa; --card:#fff; --text:#1a1a2e; --muted:#6b7280; --green:#16a34a; --red:#dc2626; --border:#e5e7eb; }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans",sans-serif; background:var(--bg); color:var(--text); line-height:1.7; padding:2rem 1rem; }
-    .container { max-width:640px; margin:0 auto; }
-    h1 { font-size:1.5rem; margin-bottom:0.25rem; }
-    .date { color:var(--muted); margin-bottom:1.5rem; }
-    table { width:100%; border-collapse:collapse; background:var(--card); border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.1); }
-    th, td { padding:0.75rem 1rem; text-align:left; border-bottom:1px solid var(--border); }
-    th { background:var(--bg); font-weight:600; font-size:0.85rem; color:var(--muted); }
+    :root {
+      --bg: #f4f1eb;
+      --card: #fff;
+      --text: #1a1a2e;
+      --muted: #6b7280;
+      --green: #16a34a;
+      --red: #dc2626;
+      --border: #d1c7b7;
+      --accent: #1a1a2e;
+      --header-bg: #1a1a2e;
+      --header-text: #f4f1eb;
+      --link: #1d4ed8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 0;
+    }
+
+    /* ヘッダー */
+    .header {
+      background: var(--header-bg);
+      color: var(--header-text);
+      text-align: center;
+      padding: 1.5rem 1rem 1rem;
+      border-bottom: 4px double var(--border);
+    }
+    .header h1 {
+      font-size: 2rem;
+      letter-spacing: 0.3em;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .header .date-line {
+      font-size: 1rem;
+      opacity: 0.85;
+      font-family: sans-serif;
+    }
+    .header .edition {
+      font-size: 0.75rem;
+      opacity: 0.6;
+      margin-top: 0.25rem;
+      font-family: sans-serif;
+    }
+
+    /* メインコンテナ */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+    }
+
+    /* セクション */
+    .section {
+      margin-bottom: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .section-title {
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.6rem 1rem;
+      background: var(--accent);
+      color: var(--header-text);
+      letter-spacing: 0.15em;
+      font-family: sans-serif;
+    }
+    .section-body {
+      padding: 1rem;
+    }
+
+    /* サマリー */
+    .summary-text {
+      font-size: 1.05rem;
+      line-height: 2;
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+    }
+
+    /* 2カラムグリッド */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 700px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    /* テーブル */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .data-table th, .data-table td {
+      padding: 0.5rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    .data-table th {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(0,0,0,0.02);
+    }
+    .data-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .data-table .name { font-weight: 600; }
+    .data-table .muted { color: var(--muted); font-size: 0.8rem; }
+
+    /* セクターチャート */
+    .sector-chart { font-family: sans-serif; }
+    .sector-row {
+      display: flex;
+      align-items: center;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 0.9rem;
+    }
+    .sector-name { width: 120px; font-weight: 600; flex-shrink: 0; }
+    .sector-bar-container {
+      flex: 1;
+      height: 18px;
+      background: rgba(0,0,0,0.04);
+      border-radius: 3px;
+      margin: 0 0.5rem;
+      overflow: hidden;
+    }
+    .sector-bar { height: 100%; border-radius: 3px; transition: width 0.3s; }
+    .sector-value { width: 70px; text-align: right; font-weight: 600; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+
+    /* ニュース */
+    .news-list { font-family: sans-serif; }
+    .news-item {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-meta { font-size: 0.75rem; margin-bottom: 0.2rem; }
+    .news-category {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.1rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      margin-right: 0.5rem;
+      font-weight: 600;
+    }
+    .news-source { color: var(--muted); }
+    .news-title { font-size: 1rem; font-weight: 700; line-height: 1.5; }
+    .news-title a { color: var(--text); text-decoration: none; }
+    .news-title a:hover { color: var(--link); }
+    .news-summary { font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; line-height: 1.6; }
+
+    /* カレンダー */
+    .calendar-table .cal-time { font-weight: 600; white-space: nowrap; width: 60px; }
+    .calendar-table .cal-country { text-align: center; width: 40px; }
+    .calendar-table .cal-importance { text-align: center; width: 60px; color: #ca8a04; }
+
+    /* Fear & Greed */
+    .fear-greed {
+      text-align: center;
+      padding: 0.5rem;
+      font-family: sans-serif;
+    }
+    .fg-header { font-size: 0.85rem; font-weight: 600; color: var(--muted); margin-bottom: 0.3rem; }
+    .fg-value { font-size: 2.5rem; font-weight: 800; line-height: 1.2; }
+    .fg-label { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .fg-gauge-bg {
+      width: 100%;
+      height: 12px;
+      background: linear-gradient(to right, #7b2d8e, #dc2626, #ca8a04, #ea580c, #16a34a);
+      border-radius: 6px;
+      position: relative;
+    }
+    .fg-gauge-fill { display: none; }
+    .fg-gauge-marker {
+      position: absolute;
+      top: -4px;
+      width: 4px;
+      height: 20px;
+      background: var(--text);
+      border-radius: 2px;
+      transform: translateX(-50%);
+    }
+    .fg-gauge-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    /* データなし */
+    .no-data { color: var(--muted); text-align: center; padding: 1.5rem; font-family: sans-serif; }
+
+    /* フッター */
+    .footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 2px solid var(--border);
+      margin-top: 1rem;
+      font-family: sans-serif;
+    }
+
+    /* 印刷対応 */
+    @media print {
+      body { background: #fff; padding: 0; font-size: 10pt; }
+      .header { background: #fff; color: #000; border-bottom: 3px double #000; }
+      .section { border: 1px solid #ccc; break-inside: avoid; }
+      .section-title { background: #eee; color: #000; }
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .fg-gauge-bg { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .news-category { background: #333; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
   </style>
 </head>
 <body>
+  <div class="header">
+    <h1>株式市場デイリーレポート</h1>
+    <div class="date-line">2026年3月5日（水）</div>
+    <div class="edition">Generated: 2026-03-05T06:30:00+09:00</div>
+  </div>
+
   <div class="container">
-    <h1>株式市場レポート</h1>
-    <p class="date">2026年3月5日</p>
-    <table>
-      <thead>
-        <tr><th>市場</th><th style="text-align:right">終値</th><th style="text-align:right">前日比</th></tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>日経平均</td>
-        <td style="text-align:right">38,245.78</td>
-        <td style="text-align:right;color:var(--green)">+312.45 (+0.82%)</td>
-      </tr>
-      <tr>
-        <td>S&amp;P 500</td>
-        <td style="text-align:right">5,123.45</td>
-        <td style="text-align:right;color:var(--red)">-23.12 (-0.45%)</td>
-      </tr>
-      <tr>
-        <td>上海総合</td>
-        <td style="text-align:right">3,156.20</td>
-        <td style="text-align:right;color:var(--text)">0.00 (0.00%)</td>
-      </tr>
-      </tbody>
-    </table>
+    
+    <div class="section">
+      <div class="section-title">&#128202; マーケットサマリー</div>
+      <div class="section-body">
+        <p class="summary-text">米国市場はFRBの利下げ期待を背景にS&amp;P500が小幅上昇。テクノロジーセクターが牽引し、NASDAQは1%近い上昇を記録。一方、日経平均は円安を追い風に3日続伸し、38,000円台を回復した。原油価格は中東情勢の不透明感から上昇し、金価格も安全資産としての需要から堅調に推移している。</p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="section">
+        <div class="section-title">&#128200; 主要株価指数</div>
+        <div class="section-body"><table class="data-table">
+    <thead><tr><th>市場</th><th class="num">終値</th><th class="num">前日比</th><th class="num">出来高</th></tr></thead>
+    <tbody><tr>
+      <td class="name">日経平均</td>
+      <td class="num">38,245.78</td>
+      <td class="num" style="color:var(--green)">&#9650; +312.45 (+0.82%)</td>
+      <td class="num">12.3億</td>
+    </tr>
+<tr>
+      <td class="name">TOPIX</td>
+      <td class="num">2,678.34</td>
+      <td class="num" style="color:var(--green)">&#9650; +18.92 (+0.71%)</td>
+      <td class="num">8.9億</td>
+    </tr>
+<tr>
+      <td class="name">S&amp;P 500</td>
+      <td class="num">5,123.45</td>
+      <td class="num" style="color:var(--red)">&#9660; -23.12 (-0.45%)</td>
+      <td class="num">-</td>
+    </tr>
+<tr>
+      <td class="name">NYダウ</td>
+      <td class="num">38,654.12</td>
+      <td class="num" style="color:var(--red)">&#9660; -124.56 (-0.32%)</td>
+      <td class="num">-</td>
+    </tr>
+<tr>
+      <td class="name">NASDAQ</td>
+      <td class="num">16,234.89</td>
+      <td class="num" style="color:var(--green)">&#9650; +145.67 (+0.91%)</td>
+      <td class="num">-</td>
+    </tr>
+<tr>
+      <td class="name">FTSE 100</td>
+      <td class="num">7,645.23</td>
+      <td class="num" style="color:var(--red)">&#9660; -12.34 (-0.16%)</td>
+      <td class="num">-</td>
+    </tr>
+<tr>
+      <td class="name">上海総合</td>
+      <td class="num">3,156.20</td>
+      <td class="num" style="color:var(--green)">&#9650; +23.45 (+0.75%)</td>
+      <td class="num">34.6億</td>
+    </tr></tbody>
+  </table></div>
+      </div>
+      <div class="section">
+        <div class="section-title">&#128177; 為替レート</div>
+        <div class="section-body"><table class="data-table">
+    <thead><tr><th>通貨ペア</th><th class="num">レート</th><th class="num">前日比</th></tr></thead>
+    <tbody><tr>
+      <td class="name">USD/JPY</td>
+      <td class="num">149.85</td>
+      <td class="num" style="color:var(--red)">-0.21%</td>
+    </tr>
+<tr>
+      <td class="name">EUR/JPY</td>
+      <td class="num">162.45</td>
+      <td class="num" style="color:var(--green)">+0.28%</td>
+    </tr>
+<tr>
+      <td class="name">EUR/USD</td>
+      <td class="num">1.0845</td>
+      <td class="num" style="color:var(--green)">+0.21%</td>
+    </tr>
+<tr>
+      <td class="name">GBP/JPY</td>
+      <td class="num">189.23</td>
+      <td class="num" style="color:var(--red)">-0.30%</td>
+    </tr></tbody>
+  </table></div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="section">
+        <div class="section-title">&#127760; コモディティ</div>
+        <div class="section-body"><table class="data-table">
+    <thead><tr><th>商品</th><th class="num">価格</th><th class="num">単位</th><th class="num">前日比</th></tr></thead>
+    <tbody><tr>
+      <td class="name">金 (Gold)</td>
+      <td class="num">2,145.30</td>
+      <td class="num muted">USD/oz</td>
+      <td class="num" style="color:var(--green)">+0.59%</td>
+    </tr>
+<tr>
+      <td class="name">WTI原油</td>
+      <td class="num">78.45</td>
+      <td class="num muted">USD/bbl</td>
+      <td class="num" style="color:var(--green)">+1.59%</td>
+    </tr>
+<tr>
+      <td class="name">銀 (Silver)</td>
+      <td class="num">24.56</td>
+      <td class="num muted">USD/oz</td>
+      <td class="num" style="color:var(--red)">-0.73%</td>
+    </tr></tbody>
+  </table></div>
+      </div>
+      <div class="section">
+        <div class="section-title">&#128203; セクター別騰落</div>
+        <div class="section-body"><div class="sector-chart"><div class="sector-row">
+      <span class="sector-name">エネルギー</span>
+      <span class="sector-bar-container">
+        <span class="sector-bar" style="width:54.6%;background:var(--green);float:right"></span>
+      </span>
+      <span class="sector-value" style="color:var(--green)">+1.82%</span>
+    </div>
+<div class="sector-row">
+      <span class="sector-name">テクノロジー</span>
+      <span class="sector-bar-container">
+        <span class="sector-bar" style="width:37.5%;background:var(--green);float:right"></span>
+      </span>
+      <span class="sector-value" style="color:var(--green)">+1.25%</span>
+    </div>
+<div class="sector-row">
+      <span class="sector-name">金融</span>
+      <span class="sector-bar-container">
+        <span class="sector-bar" style="width:19.5%;background:var(--green);float:right"></span>
+      </span>
+      <span class="sector-value" style="color:var(--green)">+0.65%</span>
+    </div>
+<div class="sector-row">
+      <span class="sector-name">通信</span>
+      <span class="sector-bar-container">
+        <span class="sector-bar" style="width:13.5%;background:var(--green);float:right"></span>
+      </span>
+      <span class="sector-value" style="color:var(--green)">+0.45%</span>
+    </div>
+<div class="sector-row">
+      <span class="sector-name">資本財</span>
+      <span class="sector-bar-container">
+        <span class="sector-bar" style="width:10.200000000000001%;background:var(--green);float:right"></span>
+      </span>
+      <span class="sector-value" style="color:var(--green)">+0.34%</span>
+    </div>
+<div class="sector-row">
+      <span class="sector-name">公益</span>
+      <span class="sector-bar-container">
+        <span class="sector-bar" style="width:6.9%;background:var(--green);float:right"></span>
+      </span>
+      <span class="sector-value" style="color:var(--green)">+0.23%</span>
+    </div>
+<div class="sector-row">
+      <span class="sector-name">消費財</span>
+      <span class="sector-bar-container">
+        <span class="sector-bar" style="width:3.5999999999999996%;background:var(--red);float:left"></span>
+      </span>
+      <span class="sector-value" style="color:var(--red)">-0.12%</span>
+    </div>
+<div class="sector-row">
+      <span class="sector-name">ヘルスケア</span>
+      <span class="sector-bar-container">
+        <span class="sector-bar" style="width:11.4%;background:var(--red);float:left"></span>
+      </span>
+      <span class="sector-value" style="color:var(--red)">-0.38%</span>
+    </div>
+<div class="sector-row">
+      <span class="sector-name">素材</span>
+      <span class="sector-bar-container">
+        <span class="sector-bar" style="width:20.1%;background:var(--red);float:left"></span>
+      </span>
+      <span class="sector-value" style="color:var(--red)">-0.67%</span>
+    </div>
+<div class="sector-row">
+      <span class="sector-name">不動産</span>
+      <span class="sector-bar-container">
+        <span class="sector-bar" style="width:34.5%;background:var(--red);float:left"></span>
+      </span>
+      <span class="sector-value" style="color:var(--red)">-1.15%</span>
+    </div></div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">&#128240; 主要ニュース</div>
+      <div class="section-body"><div class="news-list"><article class="news-item">
+      <div class="news-meta"><span class="news-category">金融政策</span><span class="news-source">Reuters</span></div>
+      <h3 class="news-title"><a href="https://example.com/news/1" target="_blank" rel="noopener">FRB議長、年内利下げの可能性を示唆</a></h3>
+      <p class="news-summary">パウエル議長は議会証言で、インフレの鈍化傾向が続けば年内に利下げに踏み切る可能性があると述べた。市場では6月の利下げ確率が70%に上昇。</p>
+    </article>
+<article class="news-item">
+      <div class="news-meta"><span class="news-category">企業決算</span><span class="news-source">Bloomberg</span></div>
+      <h3 class="news-title"><a href="https://example.com/news/2" target="_blank" rel="noopener">Apple、四半期決算で過去最高益を更新</a></h3>
+      <p class="news-summary">iPhone 16シリーズの好調な販売に加え、サービス部門の成長が寄与。AI機能の搭載が買い替え需要を喚起している。</p>
+    </article>
+<article class="news-item">
+      <div class="news-meta"><span class="news-category">経済政策</span><span class="news-source">SCMP</span></div>
+      <h3 class="news-title"><a href="https://example.com/news/3" target="_blank" rel="noopener">中国政府、追加景気刺激策を発表</a></h3>
+      <p class="news-summary">不動産セクターの回復を目指し、住宅ローン金利の追加引き下げと地方政府の債務救済策を打ち出した。上海総合指数は0.75%上昇。</p>
+    </article>
+<article class="news-item">
+      <div class="news-meta"><span class="news-category">企業戦略</span><span class="news-source">日経新聞</span></div>
+      <h3 class="news-title"><a href="https://example.com/news/4" target="_blank" rel="noopener">トヨタ、全固体電池搭載EVを2027年投入と発表</a></h3>
+      <p class="news-summary">航続距離1,000kmを実現する全固体電池技術の量産化に目処。テスラとの競争が本格化する見通し。</p>
+    </article>
+<article class="news-item">
+      <div class="news-meta"><span class="news-category">コモディティ</span><span class="news-source">Reuters</span></div>
+      <h3 class="news-title"><a href="https://example.com/news/5" target="_blank" rel="noopener">OPEC+、追加減産の延長を合意</a></h3>
+      <p class="news-summary">サウジアラビア主導で日量200万バレルの追加減産を6月末まで延長。原油価格は80ドル台を目指す展開に。</p>
+    </article>
+<article class="news-item">
+      <div class="news-meta"><span class="news-category">テクノロジー</span><span class="news-source">日経新聞</span></div>
+      <h3 class="news-title"><a href="https://example.com/news/6" target="_blank" rel="noopener">半導体業界、AI需要で受注が過去最高に</a></h3>
+      <p class="news-summary">TSMCの2月売上は前年同月比35%増。NVIDIA向けの先端プロセス需要が牽引。日本の半導体装置メーカーにも恩恵。</p>
+    </article>
+<article class="news-item">
+      <div class="news-meta"><span class="news-category">金融政策</span><span class="news-source">Reuters</span></div>
+      <h3 class="news-title"><a href="https://example.com/news/7" target="_blank" rel="noopener">日銀、次回会合での利上げ観測が後退</a></h3>
+      <p class="news-summary">春闘の賃上げ動向を見極める姿勢。市場では4月会合での追加利上げ確率が30%に低下。円安がやや進行。</p>
+    </article>
+<article class="news-item">
+      <div class="news-meta"><span class="news-category">暗号資産</span><span class="news-source">CoinDesk</span></div>
+      <h3 class="news-title"><a href="https://example.com/news/8" target="_blank" rel="noopener">ビットコイン、10万ドル突破後に調整局面</a></h3>
+      <p class="news-summary">ETF資金流入は続くものの、利益確定売りが優勢。テクニカル的には95,000ドルがサポートラインとして意識される。</p>
+    </article></div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="section">
+        <div class="section-title">&#128197; 本日の経済カレンダー</div>
+        <div class="section-body"><table class="data-table calendar-table">
+    <thead><tr><th>時刻</th><th>国</th><th>イベント</th><th>重要度</th></tr></thead>
+    <tbody><tr>
+      <td class="cal-time">08:50</td>
+      <td class="cal-country">🇯🇵</td>
+      <td>GDP速報値（10-12月期・2次速報）</td>
+      <td class="cal-importance">★★★</td>
+    </tr>
+<tr>
+      <td class="cal-time">10:30</td>
+      <td class="cal-country">🇨🇳</td>
+      <td>Caixin サービス業PMI（2月）</td>
+      <td class="cal-importance">★★</td>
+    </tr>
+<tr>
+      <td class="cal-time">18:00</td>
+      <td class="cal-country">🇪🇺</td>
+      <td>小売売上高（1月）</td>
+      <td class="cal-importance">★★</td>
+    </tr>
+<tr>
+      <td class="cal-time">19:00</td>
+      <td class="cal-country">🇪🇺</td>
+      <td>消費者物価指数（2月・速報値）</td>
+      <td class="cal-importance">★★★</td>
+    </tr>
+<tr>
+      <td class="cal-time">21:15</td>
+      <td class="cal-country">🇺🇸</td>
+      <td>ADP雇用統計（2月）</td>
+      <td class="cal-importance">★★★</td>
+    </tr>
+<tr>
+      <td class="cal-time">22:45</td>
+      <td class="cal-country">🇺🇸</td>
+      <td>ISMサービス業景気指数（2月）</td>
+      <td class="cal-importance">★★★</td>
+    </tr>
+<tr>
+      <td class="cal-time">24:00</td>
+      <td class="cal-country">🇺🇸</td>
+      <td>EIA原油在庫統計</td>
+      <td class="cal-importance">★★</td>
+    </tr></tbody>
+  </table></div>
+      </div>
+      <div class="section">
+        <div class="section-title">&#128168; 市場心理</div>
+        <div class="section-body"><div class="fear-greed">
+    <div class="fg-header">Fear &amp; Greed Index</div>
+    <div class="fg-value" style="color:#ea580c">62</div>
+    <div class="fg-label" style="color:#ea580c">Greed</div>
+    <div class="fg-gauge">
+      <div class="fg-gauge-bg">
+        <div class="fg-gauge-fill" style="width:62%;background:#ea580c"></div>
+        <div class="fg-gauge-marker" style="left:62%"></div>
+      </div>
+      <div class="fg-gauge-labels"><span>Extreme Fear</span><span>Extreme Greed</span></div>
+    </div>
+  </div></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      &copy; 2026 Stock Market Daily Report &#8212; 公開情報を基に自動生成されたレポートです。投資助言ではありません。
+    </div>
   </div>
 </body>
 </html>
