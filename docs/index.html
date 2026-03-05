@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界株式市場レポート | 2026年3月4日〜5日</title>
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --text: #1a1a2e;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --green: #16a34a;
+      --red: #dc2626;
+      --border: #e5e7eb;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 0 0 3rem;
+    }
+    header {
+      background: linear-gradient(135deg, #1e3a5f, #2563eb);
+      color: #fff;
+      padding: 2rem 1.25rem 1.5rem;
+    }
+    header h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    header .subtitle {
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+    header .date-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border-radius: 6px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      margin-top: 0.75rem;
+    }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 1rem; }
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.75rem 0 0.75rem;
+      padding-left: 0.6rem;
+      border-left: 4px solid var(--accent);
+    }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .card h3 .flag { font-size: 1.1rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.5rem 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    td:nth-child(2), td:nth-child(3), td:nth-child(4),
+    th:nth-child(2), th:nth-child(3), th:nth-child(4) {
+      text-align: right;
+    }
+    .up { color: var(--green); font-weight: 600; }
+    .down { color: var(--red); font-weight: 600; }
+    .summary-box {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.88rem;
+    }
+    .summary-box strong { color: #92400e; }
+    .commodity-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+    .commodity-item {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .commodity-item .label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+    }
+    .commodity-item .value {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+    .commodity-item .change {
+      font-size: 0.78rem;
+      margin-top: 0.1rem;
+    }
+    .context-card {
+      background: linear-gradient(135deg, #fef2f2, #fff1f2);
+      border: 1px solid #fecaca;
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+    .context-card h3 {
+      color: #991b1b;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+    .context-card ul {
+      padding-left: 1.2rem;
+      font-size: 0.85rem;
+    }
+    .context-card li { margin-bottom: 0.35rem; }
+    .outlook-card {
+      background: linear-gradient(135deg, #eff6ff, #eef2ff);
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+    .outlook-card h3 { color: #1e40af; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .outlook-card ul { padding-left: 1.2rem; font-size: 0.85rem; }
+    .outlook-card li { margin-bottom: 0.35rem; }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.72rem;
+      margin-top: 2rem;
+      padding: 0 1rem;
+      line-height: 1.6;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    @media (max-width: 400px) {
+      header h1 { font-size: 1.15rem; }
+      .commodity-grid { grid-template-columns: 1fr; }
+      table { font-size: 0.78rem; }
+      th, td { padding: 0.4rem 0.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>世界株式市場レポート</h1>
+    <div class="subtitle">Global Stock Market Daily Report</div>
+    <div class="date-badge">2026年3月4日（水）〜 3月5日（木）</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- サマリー -->
+  <div class="summary-box" style="margin-top:1.25rem;">
+    <strong>概況:</strong> 中東情勢（米・イスラエルによるイラン攻撃）の影響で市場は高いボラティリティが継続。3月4日は米国・欧州市場が反発する一方、アジア市場は大幅下落。3月5日はアジアが反発したものの、欧州市場が急落する展開となった。
+  </div>
+
+  <!-- 米国市場 -->
+  <h2 class="section-title">米国市場</h2>
+  <div class="card">
+    <h3><span class="flag">🇺🇸</span> 主要指数</h3>
+    <table>
+      <thead>
+        <tr><th>指数</th><th>3/4 終値</th><th>前日比</th><th>3/5 日中</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>S&P 500</td>
+          <td>6,869.50</td>
+          <td class="up">+0.78%</td>
+          <td>6,873 <span class="up" style="font-size:0.75rem;">+0.83%</span></td>
+        </tr>
+        <tr>
+          <td>Nasdaq</td>
+          <td>22,807.48</td>
+          <td class="up">+1.29%</td>
+          <td>22,828 <span class="up" style="font-size:0.75rem;">+1.38%</span></td>
+        </tr>
+        <tr>
+          <td>NYダウ</td>
+          <td>48,739.41</td>
+          <td class="up">+0.49%</td>
+          <td>48,803 <span class="up" style="font-size:0.75rem;">+0.62%</span></td>
+        </tr>
+        <tr>
+          <td>Russell 2000</td>
+          <td>2,636.01</td>
+          <td class="up">+1.06%</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.82rem; color:var(--muted); margin-top:0.6rem;">
+      3月4日はテクノロジー株がけん引し反発。Micron、AMDが5%超上昇。ADP雇用報告が予想上振れ（+6.3万人）、ISMサービス業PMIが56.1と好調で市場心理が改善。3月5日も堅調に推移。
+    </p>
+  </div>
+
+  <!-- アジア市場 -->
+  <h2 class="section-title">アジア・太平洋市場</h2>
+  <div class="card">
+    <h3><span class="flag">🇯🇵</span> 日経平均株価</h3>
+    <table>
+      <thead><tr><th>日付</th><th>終値</th><th>前日比</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>3月4日</td>
+          <td>54,245.54</td>
+          <td class="down">-2,033円 (-3.61%)</td>
+        </tr>
+        <tr>
+          <td>3月5日</td>
+          <td>55,278</td>
+          <td class="up">+1,032円 (+1.90%)</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.82rem; color:var(--muted); margin-top:0.5rem;">
+      3月4日は3日続落し、一時下げ幅が2,600円を超える場面も。5日は自律反発の買いが入り4日ぶりに反発。
+    </p>
+  </div>
+
+  <div class="card">
+    <h3><span class="flag">🇭🇰</span> 香港ハンセン指数</h3>
+    <table>
+      <thead><tr><th>日付</th><th>終値</th><th>前日比</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>3月4日</td>
+          <td>25,249.48</td>
+          <td class="down">-518pt (-2.01%)</td>
+        </tr>
+        <tr>
+          <td>3月5日</td>
+          <td>約 25,337</td>
+          <td class="up">+0.35%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3><span class="flag">🇰🇷</span> 韓国 KOSPI</h3>
+    <table>
+      <thead><tr><th>日付</th><th>概況</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>3月4日</td>
+          <td class="down">-12%超の暴落（取引一時停止措置発動）</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.82rem; color:var(--muted); margin-top:0.5rem;">
+      数十年来で最悪の下落幅を記録。Korea Exchangeが取引を一時停止。
+    </p>
+  </div>
+
+  <!-- 欧州市場 -->
+  <h2 class="section-title">欧州市場</h2>
+  <div class="card">
+    <h3><span class="flag">🇪🇺</span> 主要指数</h3>
+    <table>
+      <thead><tr><th>指数</th><th>3/4 終値</th><th>変動率</th><th>3/5 終値</th><th>変動率</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>FTSE 100</td>
+          <td>10,572</td>
+          <td class="up">+0.84%</td>
+          <td>10,484</td>
+          <td class="down">-2.75%</td>
+        </tr>
+        <tr>
+          <td>DAX</td>
+          <td>24,205</td>
+          <td class="up">+1.74%</td>
+          <td>23,791</td>
+          <td class="down">-3.44%</td>
+        </tr>
+        <tr>
+          <td>STOXX 600</td>
+          <td>—</td>
+          <td class="up">+1.40%</td>
+          <td>—</td>
+          <td class="down">-0.20%</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.82rem; color:var(--muted); margin-top:0.5rem;">
+      3月4日は全面高も、5日は中東情勢の再燃懸念から一転して大幅安。DAXは-3.44%の急落。
+    </p>
+  </div>
+
+  <!-- 中東市場 -->
+  <div class="card">
+    <h3><span class="flag">🇦🇪</span> 中東市場</h3>
+    <p style="font-size:0.85rem;">
+      ドバイ・アブダビ取引所が再開後、ドバイのベンチマーク指数は<span class="down">-4.9%</span>と大幅下落。
+    </p>
+  </div>
+
+  <!-- コモディティ・指標 -->
+  <h2 class="section-title">コモディティ・その他指標</h2>
+  <div class="commodity-grid">
+    <div class="commodity-item">
+      <div class="label">WTI原油</div>
+      <div class="value">$76.31</div>
+      <div class="change up">Brent $82超</div>
+    </div>
+    <div class="commodity-item">
+      <div class="label">金（Gold）</div>
+      <div class="value">$5,153</div>
+      <div class="change up">+1.01%</div>
+    </div>
+    <div class="commodity-item">
+      <div class="label">VIX（恐怖指数）</div>
+      <div class="value">20.40</div>
+      <div class="change down">高止まり</div>
+    </div>
+    <div class="commodity-item">
+      <div class="label">ビットコイン</div>
+      <div class="value">$70,000超</div>
+      <div class="change up">急騰</div>
+    </div>
+  </div>
+
+  <!-- 地政学リスク -->
+  <h2 class="section-title">市場を動かす要因</h2>
+  <div class="context-card">
+    <h3>地政学リスク: 米・イスラエル vs イラン</h3>
+    <ul>
+      <li>2月28日に米・イスラエルがイランへの軍事作戦「Operation Epic Fury」を開始</li>
+      <li>ホルムズ海峡の事実上の閉鎖により原油価格が急騰</li>
+      <li>Brent原油は一時 $82/バレル（14カ月ぶり高値）まで上昇</li>
+      <li>イラン側が米国に和平交渉の接触を開始との報道あり</li>
+      <li>トランプ大統領がペルシャ湾の商業船舶に対するリスク保険と海軍護衛を提供すると表明</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>その他の注目材料</h3>
+    <ul style="padding-left:1.2rem; font-size:0.85rem;">
+      <li><strong>関税:</strong> ベッセント財務長官がトランプ大統領の15%グローバル関税を今週中に発動と発言</li>
+      <li><strong>雇用:</strong> ADP雇用統計が予想上振れ（+6.3万人 vs 予想+5万人）</li>
+      <li><strong>ISM:</strong> サービス業PMIが56.1と2022年7月以来の高水準</li>
+      <li><strong>暗号資産:</strong> トランプ大統領がデジタル資産市場法案への支持を示し、Coinbaseが急騰</li>
+    </ul>
+  </div>
+
+  <!-- 今後の見通し -->
+  <h2 class="section-title">今後の注目ポイント</h2>
+  <div class="outlook-card">
+    <h3>3月5日〜の注目イベント</h3>
+    <ul>
+      <li>米・週間新規失業保険申請件数</li>
+      <li>Kroger、Costco、Marvell Technology の決算発表</li>
+      <li>イラン情勢の推移（和平交渉の進展に注目）</li>
+      <li>15%グローバル関税の正式発動時期</li>
+      <li>日経平均の下値メド：5万3,000円前後が意識される水準</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  <p>本レポートは2026年3月5日時点の公開情報に基づいて作成されています。</p>
+  <p>数値は速報値を含み、最終確定値と異なる場合があります。</p>
+  <p style="margin-top:0.4rem;">
+    出典:
+    <a href="https://www.cnbc.com/2026/03/03/stock-market-today-live-updates.html">CNBC</a> |
+    <a href="https://finance.yahoo.com/news/stock-market-today-march-4-224903316.html">Yahoo Finance</a> |
+    <a href="https://tradingeconomics.com/united-states/stock-market">Trading Economics</a> |
+    <a href="https://www.nikkei.com/article/DGXZQOFL0458G0U6A300C2000000/">日本経済新聞</a> |
+    <a href="https://www.bloomberg.com/news/articles/2026-03-04/stock-market-today-dow-s-p-live-updates-">Bloomberg</a>
+  </p>
+</footer>
+
+</body>
+</html>
