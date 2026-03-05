@@ -1,0 +1,23 @@
+{
+  "date": "2026-03-05",
+  "markets": [
+    {
+      "name": "日経平均",
+      "close": 38245.78,
+      "change": 312.45,
+      "changePercent": 0.82
+    },
+    {
+      "name": "S&P 500",
+      "close": 5123.45,
+      "change": -23.12,
+      "changePercent": -0.45
+    },
+    {
+      "name": "上海総合",
+      "close": 3156.2,
+      "change": 0,
+      "changePercent": 0
+    }
+  ]
+}
