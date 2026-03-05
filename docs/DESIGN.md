@@ -106,7 +106,15 @@ stock-report/
 | JSONのパースに失敗 | エラーメッセージを表示して終了 |
 | markets配列が空 | 「データがありません」と表示するHTMLを生成 |
 
-## 7. 今後の拡張予定（v2）
+## 7. 公開方法
+
+生成したレポートを GitHub Pages で閲覧する手順:
+
+1. `node src/main.js data/sample.json ../docs/stock-report-generated.html` で docs/ に出力
+2. `docs/index.html` からリンクされているのでブラウザで閲覧可能
+3. GitHub Pages の設定で `docs/` を公開ディレクトリに指定
+
+## 8. 今後の拡張予定（v2）
 
 - [ ] Chart.jsによるグラフ表示
 - [ ] 為替データ（USD/JPY等）の追加
